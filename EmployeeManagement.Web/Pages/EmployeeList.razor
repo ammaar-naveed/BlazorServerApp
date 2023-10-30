@@ -1,0 +1,56 @@
+﻿@page "/"
+@inherits EmployeeListBase
+@using EmployeeManagement.Models;
+<h3>Employee List</h3>
+@if (Employees == null)
+{
+    <div class="spinner"></div>
+}
+else
+{
+    <div class="row">
+        @foreach (var employee in Employees)
+        {
+            <div class="col-md-6">
+                <div class="card mb-3 border border-secondary rounded rounded-3 shadow-none p-3 mb-5 bg-light rounded">
+                    <div class="card-body">
+                        <h4 style="font-family:'Arial Rounded MT';" class="card-title">@employee.FirstName @employee.LastName</h4>
+                        <p class="card-text">Department: @employee.DepartmentId</p>
+                        <p class="card-text">Gender: @employee.Gender</p>
+
+                        <!-- Editable email input -->
+                        <input class="form-control mb-2" @bind="@EmployeeEmails[employee.EmployeeId]" @bind:event="oninput" placeholder="Enter Email Address" />
+
+                        <!-- Display current email address -->
+                        <p class="card-text">Current Email Address: @EmployeeEmails[employee.EmployeeId]</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+<hr />
+
+<RadzenDataGrid FilterMode="FilterMode.Advanced" Data="@Employees" TItem="Employee">
+    <Columns>
+        <RadzenDataGridColumn TItem="Employee" Property="EmployeeId" Filterable="false" Title="ID" Frozen="true" Width="80px" TextAlign="TextAlign.Center" />
+        <RadzenDataGridColumn TItem="Employee" Property="FirstName" Title="First Name" Frozen="true" Width="160px" />
+        <RadzenDataGridColumn TItem="Employee" Property="LastName" Title="Last Name" Width="160px" />
+        <RadzenDataGridColumn TItem="Employee" Property="Gender" Title="Gender" Width="160px" />
+        <RadzenDataGridColumn TItem="Employee" Property="Email" Title="Email Address" Width="160px" />
+
+        <!-- Custom column for Update Email Address with TextBox -->
+        <RadzenDataGridColumn TItem="Employee" Title="Update Email Address" Width="160px">
+            <Template Context="Employee">
+                <RadzenTextBox @bind-Value="@Employee.Email" class="w-100"/>
+            </Template>
+        </RadzenDataGridColumn>
+        <RadzenDataGridColumn TItem="Employee" Title="Edit Employee" Width="80px">
+            <Template Context="Employee">
+                <RadzenButton Shade="Shade.Lighter" Text="Edit" ButtonStyle="ButtonStyle.Info" />
+            </Template>
+        </RadzenDataGridColumn>
+    </Columns>
+</RadzenDataGrid>
+
