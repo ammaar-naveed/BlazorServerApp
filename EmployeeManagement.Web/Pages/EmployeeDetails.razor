@@ -1,0 +1,32 @@
+﻿@page "/employeedetails"
+@using EmployeeManagement.Models;
+@inherits EmployeeDetailsBase
+<h3>EmployeeDetails</h3>
+
+@if (Employees == null)
+{
+    <div class="spinner"></div>
+}
+else
+{
+    <div class="row">
+        @foreach (var employee in Employees)
+        {
+            <div class="col-md-6">
+                <div class="card mb-3 border border-secondary rounded rounded-3 shadow-none p-3 mb-5 bg-light rounded">
+                    <div class="card-body">
+                        <h4 style="font-family:'Arial Rounded MT';" class="card-title">@employee.FirstName @employee.LastName</h4>
+                        <p class="card-text">Department: @employee.DepartmentId</p>
+                        <p class="card-text">Gender: @employee.Gender</p>
+
+                        <!-- Editable email input -->
+                        <input class="form-control mb-2" @bind="@EmployeeEmails[employee.EmployeeId]" @bind:event="oninput" placeholder="Enter Email Address" />
+
+                        <!-- Display current email address -->
+                        <p class="card-text">Current Email Address: @EmployeeEmails[employee.EmployeeId]</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

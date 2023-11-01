@@ -1,4 +1,5 @@
 ﻿using EmployeeManagement.Models;
+using System.Net.Http.Json;
 
 namespace EmployeeManagement.Web.Services
 {
@@ -20,5 +21,11 @@ namespace EmployeeManagement.Web.Services
         {
             return await httpClient.GetFromJsonAsync<Employee[]>("api/employee");
         }
+
+
+        /*public async Task<Employee> UpdateEmployee(Employee updatedEmployee)
+        {
+            return await httpClient.PutAsJsonAsync<Employee>("api/employee", updatedEmployee);
+        }*/
     }
 }
