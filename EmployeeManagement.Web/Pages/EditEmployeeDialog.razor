@@ -1,0 +1,20 @@
+﻿@page "/editemployeedialog/{idd}"
+@inherits EditEmployeeDialogBase
+@using EmployeeManagement.Models;
+
+<RadzenTemplateForm TItem="Employee" Data="Employees">
+    <ChildContent>
+        <RadzenCard>
+            <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">First Name</RadzenText>
+            <RadzenTextBox class="form-control" id="firstname" Placeholder="Enter here" @bind-Value="Employees.FirstName" />
+            <RadzenText TextStyle="TextStyle.Subtitle2" class="rz-mt-4" TagName="TagName.H3">Last Name</RadzenText>
+            <RadzenTextBox class="form-control" id="lastname" Placeholder="Enter here" @bind-Value="Employees.LastName" />
+            <RadzenText TextStyle="TextStyle.Subtitle2" class="rz-mt-4" TagName="TagName.H3">Email Address</RadzenText>
+            <RadzenTextBox class="form-control" id="email" Placeholder="Enter here" @bind-Value="Employees.Email" />
+            <RadzenText TextStyle="TextStyle.Subtitle2" class="rz-mt-4" TagName="TagName.H3">Gender</RadzenText>
+            <RadzenDropDown @bind-Value=selectedGender Data=@Enum.GetValues(typeof(Models.Gender)) Style="width: 100%; max-width: 400px;" />
+            <RadzenButton class="rz-mt-6 w-100" Text="Submit" ButtonStyle="ButtonStyle.Primary" />
+
+        </RadzenCard>
+    </ChildContent>
+</RadzenTemplateForm>

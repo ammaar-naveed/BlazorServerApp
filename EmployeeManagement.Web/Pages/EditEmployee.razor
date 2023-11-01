@@ -1,0 +1,27 @@
+﻿@page "/editemployee/{id}/"
+@inherits EditEmployeeBase
+
+
+<EditForm Model="@Employee">
+    <h3>Edit Employee</h3>
+    <hr />
+    <RadzenRow class="rz-text-align-left" Gap="1rem">
+
+        <RadzenColumn>
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">First Name</RadzenText>
+                <RadzenTextBox class="form-control" id="firstname" Placeholder="Enter here" @bind-Value="Employee.FirstName" />
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Last Name</RadzenText>
+                <RadzenTextBox class="form-control" id="lastname" Placeholder="Enter here" @bind-Value="Employee.LastName" />
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Email Address</RadzenText>
+                <RadzenTextBox class="form-control" id="email" Placeholder="Enter here" @bind-Value="Employee.Email" />
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Gender</RadzenText>
+                <RadzenDropDown @bind-Value=selectedGender Data=@Enum.GetValues(typeof(Models.Gender)) Style="width: 100%; max-width: 400px;" />
+            </RadzenCard>
+        </RadzenColumn>
+
+        <RadzenColumn class="rz-p-5"></RadzenColumn>
+    </RadzenRow>
+
+    
+</EditForm>

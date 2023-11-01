@@ -7,6 +7,7 @@ namespace EmployeeManagament.Api.Models
         Task<IEnumerable<Employee>> GetEmployees();
         Task<Employee> GetEmployee(int employeeId);
         Task<Employee> AddEmployee(Employee employee);
+        Task<Employee>UpdateEmployee(Employee employee);
 
 
     }

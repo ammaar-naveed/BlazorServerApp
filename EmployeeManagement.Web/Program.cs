@@ -19,6 +19,7 @@ namespace EmployeeManagement.Web
                 client.BaseAddress = new Uri(@"http://localhost:5204/");
             });
             builder.Services.AddRadzenComponents();
+            builder.Services.AddScoped<DialogService>();
 
             var app = builder.Build();
 

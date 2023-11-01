@@ -21,5 +21,6 @@ namespace EmployeeManagement.Web.Pages
                 EmployeeEmails[employee.EmployeeId] = employee.Email;
             }
         }
+
     }
 }

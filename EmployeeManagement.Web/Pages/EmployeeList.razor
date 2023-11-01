@@ -1,6 +1,7 @@
 ﻿@page "/"
 @inherits EmployeeListBase
 @using EmployeeManagement.Models;
+@inject DialogService DialogService
 <h3>Employee List</h3>
 @if (Employees == null)
 {
@@ -46,11 +47,31 @@ else
                 <RadzenTextBox @bind-Value="@Employee.Email" class="w-100"/>
             </Template>
         </RadzenDataGridColumn>
-        <RadzenDataGridColumn TItem="Employee" Title="Edit Employee" Width="90px">
+
+        <RadzenDataGridColumn TItem="Employee" Title="Edit Employee" Width="180px">
             <Template Context="Employee">
-                <RadzenButton Shade="Shade.Lighter" Text="Edit" ButtonStyle="ButtonStyle.Info" />
+                <div style="display: flex; justify-content: space-around;">
+                    <RadzenButton Click="@(()=> OpenDialog(Employee.EmployeeId))" Text="Edit" ButtonStyle="ButtonStyle.Primary" />
+                    <RadzenButton Text="Add" ButtonStyle="ButtonStyle.Info" />
+                </div>
             </Template>
         </RadzenDataGridColumn>
+
     </Columns>
 </RadzenDataGrid>
 
+@code {
+    private bool IsVisible = false;
+
+    private async Task OpenDialog(int id)
+    {
+        IsVisible = true;
+
+        var dialogResult = await DialogService.OpenAsync<EditEmployeeDialog>
+       (
+       "Edit/Add Employee",
+       null,
+       new DialogOptions() { Width = "30% !important", CloseDialogOnOverlayClick = true }
+       );
+    }
+}

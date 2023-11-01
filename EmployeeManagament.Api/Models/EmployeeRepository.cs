@@ -28,8 +28,25 @@ namespace EmployeeManagament.Api.Models
         {
             return await appDbContext.Employees.
                 FirstOrDefaultAsync(i => i.EmployeeId == employeeId);
+        }
 
+        public async Task<Employee> UpdateEmployee(Employee employee)
+        {
+            var result = await appDbContext.Employees
+                .FirstOrDefaultAsync(e=>e.EmployeeId==employee.EmployeeId);
 
+            if(result != null)
+            {
+                result.FirstName=employee.FirstName;
+                result.LastName=employee.LastName;
+                result.Email=employee.Email;
+                result.Gender=employee.Gender;
+                result.DepartmentId=employee.DepartmentId;
+
+                await appDbContext.SaveChangesAsync();
+                return result;
+            }
+            return null;
         }
     }
 }
