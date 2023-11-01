@@ -4,7 +4,6 @@
 @inject DialogService DialogService
 <h3>Employee List</h3>
 
-
 <RadzenDataGrid FilterMode="FilterMode.Advanced" Data="@Employees" TItem="Employee">
     <Columns>
         <RadzenDataGridColumn TItem="Employee" Property="EmployeeId" Filterable="false" Title="ID" Frozen="true" Width="80px" TextAlign="TextAlign.Center" />
@@ -41,7 +40,7 @@
 
         var parameters = new Dictionary<string, object>
 {
-     { "userId", id }
+        { "userId", id }
 };
 
         var dialogResult = await DialogService.OpenAsync<EditEmployeeDialog>

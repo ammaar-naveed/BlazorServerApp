@@ -7,6 +7,7 @@ namespace EmployeeManagement.Web.Pages
     public class EmployeeListBase : ComponentBase
     {
         protected Dictionary<int, string> EmployeeEmails { get; set; } = new Dictionary<int, string>();
+
         [Inject]
         public IEmployeeService EmployeeService { get; set; }   
         public IEnumerable<Employee> Employees { get; set; }
